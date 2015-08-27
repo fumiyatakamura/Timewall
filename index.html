@@ -1,0 +1,534 @@
+<!DOCTYPE html>
+
+<html>
+
+<head>
+
+    <meta charset="UTF-8">
+    <meta name="description" content="Web Scripting 2 Project Website">
+    <meta name="viewport" content="width=device-width">
+
+    <title>Time Wall</title>
+
+    <link href='http://fonts.googleapis.com/css?family=Ubuntu' rel='stylesheet' type='text/css'>
+    <link rel="stylesheet" href="css/reset.css">
+    <link rel="stylesheet" href="css/global.css">
+    <link rel="stylesheet" type="text/css" href="css/responsive.css">
+
+</head>
+
+<body>
+
+<div id="container">
+    <header>
+        <div id="headerInner" class="clearfix">
+            <div class="logo"><a href="index.html"><img src="img/logo.svg" alt="Time Wall"></a></div>
+            <nav>
+                <ul>
+                    <li>
+                        <span class="largeRes">
+                            <a href="#" class="customTimeline">My Timeline</a>
+                        </span>
+                        <span class="smallRes">
+                            <a href="#" class="customTimeline"><img src="img/myTimeline.svg" alt="My Timeline"></a>
+                        </span>
+                    </li>
+                    <li>
+                        <span class="largeRes">
+                            <a href="#" class="allTimeline">Everyone's Timeline</a>
+                        </span>
+                        <span class="smallRes">
+                            <a href="#" class="allTimeline"><img src="img/everyonesTimeline.svg" alt="Everyone's Timeline"></a>
+                        </span>
+                    </li>
+                </ul>
+            </nav>
+
+
+            <div class="btnsLoggedOut showElement">
+                <ul class="headerButton right">
+                    <li>
+                        <input id="loginBtn" class="btn" type="button" value="Log In">
+                    </li>
+                    <li>
+                        <input id="signupBtn" class="btn" type="button" value="Sign Up">
+                    </li>
+                </ul>
+            </div>
+            <div class="btnsLoggedIn">
+                <ul class="headerButton right">
+                    <li>
+                        <!-- Swap button to welcome message -->
+                        <input id="userInfo" class="btn" type="button" value="userName">
+                        <!-- <p id="welcome">Welcome YOURNAME</p> -->
+                        <!-- END Swap button to welcome message -->
+                    </li>
+                    <li>
+                        <input id="logout" class="btn" type="button" value="Log Out">
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </header>
+
+
+
+
+
+
+    <form id="loginForm" class="formRegister">
+        <fieldset>
+            <legend>Welcome Back</legend>
+            <p id="loginErrorMsg"></p>
+            <label for="login">Email: </label>
+            <input id="loginEmail" type="email" placeholder="email" name="email" autofocus="autofocus"/><br/><br/>
+            <label for="password">Password: </label>
+            <input id="loginPassword" type="password" placeholder="password" name="password"/><br/><br/><br/>
+            <input id="loginbutton" type="button" value="Login"/>
+            <input type="reset" value="Reset" id="resetLoginForm" class="right"/>
+            <div class="close">
+                <span class="closeForm"></span>
+            </div>
+        </fieldset>
+    </form>
+
+
+
+
+
+
+
+
+    <form id="signupForm" class="formRegister">
+        <fieldset>
+            <legend>Welcome!</legend>
+            <p id="signupErrorMsg"></p>
+            <label for="signup">First Name: </label>
+            <input id="signupFirstName" type="text" placeholder="first name" name="firstname" autofocus="autofocus"/><br/><br/>
+            <label for="signup">Last Name: </label>
+            <input id="signupLastName" type="text" placeholder="last name" name="lastname" autofocus="autofocus"/><br/><br/>
+            <label for="signup">Email: </label>
+            <input id="signup" type="email" placeholder="email" name="email" autofocus="autofocus"/><br/><br/>
+            <label for="password">Password: </label>
+            <input id="password" type="password" placeholder="password" name="password"/><br/><br/><br/>
+            <input id="signupbutton" type="button" value="Sign Up"/>
+            <input type="reset" value="Reset" id="resetSignupForm"  class="right"/>
+            <div class="close">
+                <span class="closeForm"></span>
+            </div>
+        </fieldset>
+    </form>
+
+
+
+
+
+
+
+
+
+    <form id="signupComplete" class="formRegister">
+        <fieldset>
+            <p></p>
+        </fieldset>
+    </form>
+
+    <form id="logoutError" class="formRegister">
+        <fieldset>
+            <p id="errorMsg"></p>
+        </fieldset>
+    </form>
+
+
+
+
+
+
+
+    <div id="mainContent" class="clearfix">
+
+        <div id="newPost" class="clearfix">
+
+            <h3><span class="underline">What's On Your Mind?</span></h3>
+
+            <div id="textPost">
+                <form id="textPostForm" class="clearfix">
+                    <textarea name="post" rows="3" cols="40" placeholder="Type In Your Post"></textarea>
+                    <input id="userInfoEmailText" type="hidden" name="email" value="">
+                    <input id="textpostbutton" class="btn right" type="button" value="Post Your Thoughts">
+                </form>
+            </div>
+        </div>
+
+
+        <!-- <div id="serverMsgs"></div> -->
+
+
+
+        <div id="imageGallery" class="content clearfix js-masonry" data-masonry-options='{ "columnWidth": 310, "itemSelector": ".item" }'>
+
+
+        </div>
+
+    </div>
+
+    <footer>
+        <p>&copy; Time Wall</p>
+    </footer>
+
+</div>
+
+</body>
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+
+
+
+
+<script type="text/javascript">
+
+
+
+$(function(){
+
+    //form & button
+    $("#loginBtn").click(function(){
+        openLogin();
+    });
+
+    $("#signupBtn").click(function(){
+        openSignup();
+    });
+
+    $(".close").click(function(){
+        closeForm();
+    });
+
+    function openLogin() {
+        $("#loginForm").addClass("showElement");
+        $("#loginForm").css("display","initial");
+        $("#signupForm").removeClass("showElement");
+        $("#signupForm").css("display","none");
+        console.log("openLogin");
+    }
+
+    function openSignup() {
+        $("#signupForm").addClass("showElement");
+        $("#signupForm").css("display","initial");
+        $("#loginForm").removeClass("showElement");
+        $("#loginForm").css("display","none");
+        console.log("openSignup");
+    }
+
+    function closeForm() {
+        $(".formRegister").removeClass("showElement");
+        $(".formRegister").css("display","none");
+    }
+
+
+ //AJAX login & logput
+    $("#logoutForm").css("display", "none");
+    $("#errorMsg").css("display", "none");
+    getUserProfileInfo();
+
+
+    $("#resetLoginForm").click(function() {
+        $("#loginErrorMsg").html("");
+        $("#loginErrorMsg").css("display", "none");
+    });
+
+    $("#resetSignupForm").click(function() {
+        $("#signupErrorMsg").html("");
+        $("#signupErrorMsg").css("display", "none");
+    });
+
+    function getUserProfileInfo() {
+
+        $.ajax({
+            url: "AJAX-GET-session.php",
+            type: "GET",
+            dataType: "JSON",
+            success: function(resultData) {
+                //console.log("Session GET returned: ", resultData);
+
+                var status = resultData['status'];
+                if(status == 'success') {
+
+                    var userProfileData = "";
+                    for(var key in resultData) {
+                        if(key != 'status') {
+                            userProfileData += key + ":" + resultData[key] + " ";
+                        }
+                    }
+                    //show firstname on header
+                    document.getElementById('userInfo').value = resultData['userProfile']['firstname'];
+
+                    //using email for userID   //not working
+                    document.getElementById('userInfoEmailText').value = resultData['userProfile']['email'];
+
+                    $('.btnsLoggedOut').css("display","none");
+                    $('.btnsLoggedIn').css("display","initial");
+                    $('#newPost').css("display","block");
+                    $("#errorMsg").css("display", "none");
+
+
+                } else {
+                    //console.log("");
+                    // $("#logoutForm").css("display", "none");
+                    // $("#loginForm").css("display", "block");
+
+                }
+
+            },
+            error: function(jqXHR, textStatus, errorThrown) {
+                console.log(jqXHR.statusText, textStatus);
+            }
+        });
+
+    }
+
+
+
+
+    $("#loginbutton").click(function() {
+        var formData = ConvertFormToJSON("#loginForm");
+
+        $.ajax({
+            url: "AJAX-login-session.php",
+            type: "POST",
+            dataType: "JSON",
+            data: formData,
+            success: function(data) {
+
+                var status = data['status'];
+                if(status == 'fail') {
+                    console.log("login fail");
+                    $("#loginErrorMsg").html(data['msg']);
+                    $("#loginErrorMsg").css("display", "block");
+                } else {
+                    // get user data
+                    getUserProfileInfo();
+                    $('#loginForm').trigger("reset");
+                    $("#loginErrorMsg").css("display", "none")
+
+                    //show user name in header
+                    document.getElementById('userInfo').value = data['firstname'];
+
+
+                    $('.btnsLoggedOut').css("display","none");
+                    closeForm();
+                    $('.btnsLoggedIn').css("display","initial");
+                    $('#newPost').css("display","block");
+
+
+                }
+
+            },
+            error: function(jqXHR, textStatus, errorThrown) {
+                console.log("error");
+                console.log(jqXHR.statusText, textStatus);
+            }
+        });
+
+        // from: http://www.developerdrive.com/2013/04/turning-a-form-element-into-json-and-submiting-it-via-jquery/
+        function ConvertFormToJSON(form){
+            var array = $(form).serializeArray();
+            var json = {};
+
+            jQuery.each(array, function() {
+                json[this.name] = this.value || '';
+            });
+            return json;
+        }
+
+    });
+
+    $("#logout").click(function() {
+        var sendData = {logout: "true"}; // not boolean type data
+
+        $.ajax({
+            url: "AJAX-logout-session.php",
+            type: "POST",
+            dataType: "JSON",
+            data: sendData,
+            success: function(data) {
+
+                var status = data['status'];
+                if(status == 'fail') {
+                    console.log("logout fail");
+                    $("#logoutError").html(data['msg']);
+                    $("#logoutError").css("display", "block");
+
+
+                } else {
+                    console.log("logout");
+                    $('.btnsLoggedIn').css("display","none");
+                    closeForm();
+                    $('.btnsLoggedOut').css("display","initial");
+                    $('#newPost').css("display","none");
+                    $("#logoutErrorMsg").html("");
+                    $("#logoutErrorMsg").css("display", "none");
+                }
+
+
+
+            },
+            error: function(jqXHR, textStatus, errorThrown) {
+                console.log(jqXHR.statusText, textStatus);
+            }
+        }).done(function(){
+            window.location.reload();
+        });
+
+        // from: http://www.developerdrive.com/2013/04/turning-a-form-element-into-json-and-submiting-it-via-jquery/
+        function ConvertFormToJSON(form){
+            var array = $(form).serializeArray();
+            var json = {};
+            console.log("JSON converted: ");
+
+            jQuery.each(array, function() {
+                // don't send 'undefined'
+                json[this.name] = this.value || '';
+            });
+            return json;
+        }
+
+    });
+
+    $("#signupbutton").click(function() {
+        var formData = ConvertFormToJSON("#signupForm");
+
+        $.ajax({
+            url: "AJAX-signup-session.php",
+            type: "POST",
+            dataType: "JSON",
+            data: formData,
+            success: function(data) {
+
+                var status = data['status'];
+                if(status == 'fail') {
+                    $("#signupErrorMsg").html(data['msg']);
+                } else {
+                    $("#signupForm").css("display","none");
+
+                }
+                populatePostGallery();
+
+            },
+            error: function(jqXHR, textStatus, errorThrown) {
+                //console.log(jqXHR.statusText, textStatus, errorThrown);
+                console.log(jqXHR.statusText, textStatus);
+            }
+        });
+
+        // from: http://www.developerdrive.com/2013/04/turning-a-form-element-into-json-and-submiting-it-via-jquery/
+        function ConvertFormToJSON(form){
+            var array = $(form).serializeArray();
+            var json = {};
+            console.log("JSON converted: ");
+
+            jQuery.each(array, function() {
+                // don't send 'undefined'
+                json[this.name] = this.value || '';
+            });
+            return json;
+        }
+
+    });
+
+    // show all posts
+    $(".allTimeline").click(function(){
+        window.location.reload();
+    });
+
+    //show my posts
+    $(".customTimeline").click(function() {
+        customGallery();
+
+
+        function customGallery(){
+            console.log(document.getElementById('userInfoEmailText').value);
+            $.ajax({
+                url: "getImageGallery.php"+"?email="+document.getElementById('userInfoEmailText').value,
+                type: "GET",
+                //dataType: ,
+                success: function(data) {
+                    $('#imageGallery').html(data);
+                }
+
+            });
+        }
+    });
+
+    //show wall contents
+    populatePostGallery();
+    function populatePostGallery() {
+
+        $.ajax({
+            url: "getImageGallery.php",//image & textpost use same php file
+            dataType: "html",
+            success: function(data) {
+                $('#imageGallery').html(data);
+            }
+        }).done(function() {
+            //
+        });
+    }
+
+
+     $("#textpostbutton").click(function() {
+        var formData = ConvertFormToJSON("#textPostForm");
+
+        $.ajax({
+            url: "textpost.php",
+            type: "POST",
+            dataType: "JSON",
+            data: formData,
+            success: function(data) {
+                console.log(formData);
+
+                var status = data['status'];
+                if(status == 'fail') {
+                    $("#errorMsg").html(data['msg']);
+
+                } else {
+                    //console.log(data['msg']);
+                    //var post = '<div class="item"><p>' + data['msg'] + '</p></div>';
+                    populatePostGallery();
+                    document.getElementById("textPostForm").reset();
+                    //console.log(post);
+
+                }
+
+
+            },
+            error: function(jqXHR, textStatus, errorThrown) {
+                //console.log(jqXHR.statusText, textStatus, errorThrown);
+                console.log(jqXHR.statusText, textStatus);
+            }
+        });
+
+
+        // from: http://www.developerdrive.com/2013/04/turning-a-form-element-into-json-and-submiting-it-via-jquery/
+        function ConvertFormToJSON(form){
+            var array = $(form).serializeArray();
+            var json = {};
+            console.log("JSON converted: ");
+
+            jQuery.each(array, function() {
+                // don't send 'undefined'
+                json[this.name] = this.value || '';
+            });
+            return json;
+        }
+
+    });
+
+
+});
+
+</script>
+<script src="js/masonry.pkgd.min.js"></script>
+
+
+</html>

@@ -1,0 +1,130 @@
+/*************************
+*     responsive.css     *
+*************************/
+
+
+/* Viewport Mobile
+   =========================================================================== */
+
+
+/* ---------- Maximum Width: 1000px; ---------- */
+
+@media (max-width: 1000px) {
+
+#newPost #textPost, #newPost #photoPost {
+    float: none;
+    width: 100%;
+}
+
+#newPost #textPost {
+    border-right: none;
+    border-bottom:  1px solid #CCC;;
+    padding-right: 0;
+    padding-bottom: 20px;
+    margin-bottom: 20px;
+}
+
+#newPost #photoPost ul li:first-child {
+    margin-right: 40px;
+}
+
+}
+
+
+/* ---------- Maximum Width: 880px; ---------- */
+
+@media (max-width: 880px) {
+
+header nav .largeRes {
+    display: none;
+}
+
+header nav .smallRes {
+    display: initial;
+}
+
+}
+
+
+/* ---------- Maximum Width: 550px; ---------- */
+
+@media (max-width: 550px) {
+
+.btnsLoggedIn .btn {
+    float: none!important;
+}
+
+.btnsLoggedIn ul.headerButton {
+    width: 110px;
+}
+
+.btnsLoggedIn ul.headerButton li {
+    display: block;
+    float: right;
+    margin-right: 0;
+}
+
+.btnsLoggedIn ul.headerButton li:first-child {
+    margin-top: 10px;
+    margin-bottom: 5px;
+}
+
+.btnsLoggedIn input.btn {
+    padding: 5px 20px;
+    margin: 0;
+}
+
+header nav .smallRes a img {
+    height: 30px;
+}
+
+header nav ul li {
+  padding: 0 10px;
+}
+
+header .logo {
+  margin-top: 18px;
+}
+
+}
+
+
+/* ---------- Maximum Width: 400px; ---------- */
+
+@media (max-width: 400px) {
+
+header {
+    height: 100px;
+}
+
+.btnsLoggedIn ul.headerButton {
+    width: auto;
+    margin-top: 12px;
+    float: right;
+}
+
+.btnsLoggedIn ul.headerButton li {
+    display: inline-block;
+    float: none;
+}
+
+.btnsLoggedIn ul.headerButton li:first-child {
+     margin-top: 5px;
+     margin-bottom: 5px;
+}
+
+.btnsLoggedIn ul.headerButton li:first-child {
+    margin-top: 0;
+    margin-bottom: 0;
+    margin-right: 10px;
+}
+
+header .logo {
+    margin-top: 0;
+}
+
+#newPost #photoPost ul li:first-child {
+  margin-right: 20px;
+}
+
+}

@@ -1,0 +1,525 @@
+@charset "UTF-8";
+
+
+/* ---------- Global Styles ---------- */
+
+body {
+  font-size:62.5%;
+    background-color: #e5e5e5;
+}
+
+#container, input {
+    margin: 0 auto;
+    font-family: 'Ubuntu', futura, helvetica, arial, san-serif;
+}
+
+h1 {
+    font-size: 30px;
+    font-weight: 700;
+    margin-bottom: 10px;
+    font-size: 2.8em;
+}
+
+h2 {
+    font-size: 24px;
+    font-weight: 600;
+    margin-bottom: 10px;
+}
+
+h2 a, p a, li a {
+    color: #808080;
+    text-decoration: none;
+}
+
+h2 a:hover, p a:hover, li a:hover {
+    color: maroon;
+}
+
+h3 {
+    font-size: 20px;
+    font-weight: 500;
+    margin-bottom: 10px;
+}
+
+h4 {
+    font-size: 18px;
+    font-weight: 500;
+    margin-bottom: 10px;
+}
+
+p {
+    font-size: 1.6em;
+} /* =14px */
+
+li {
+  font-size: 1.4em;
+} /* =14px? */
+
+.mb10 {
+    margin-bottom: 10px;
+}
+
+.mb20 {
+    margin-bottom: 20px;
+}
+
+.mb30 {
+    margin-bottom: 30px;
+}
+
+.mb50 {
+    margin-bottom: 50px;
+}
+
+.right {
+    float: right;
+}
+
+.content {
+    clear: both;
+}
+
+header {
+    width: 100%;
+    height: 85px;
+    position: fixed;
+    background-color: #45AF97;
+    color: #FFFFFF;
+    z-index: 500;
+    display: flex;
+    align-items: center;
+}
+
+header #headerInner {
+    width: 97%;
+    margin: 0 auto;
+    padding: 0px 5px;
+}
+
+header .logo {
+    display: inline-block;
+}
+
+header .logo img {
+    height: 40px;
+}
+
+header nav {
+    display: inline-block;
+    font-size: 18px;
+    margin: 0px 0 0 8%;
+}
+
+header nav .smallRes {
+    display: none;
+}
+
+header nav .smallRes a img {
+    height: 30px;
+}
+
+header nav a {
+    color: #FFFFFF;
+    text-decoration: none;
+}
+
+header nav a:hover {
+    padding-top: 5px;
+    border-top: 1px maroon solid;
+    color: #CCCCCC;
+}
+
+header nav ul {
+    margin-top: 0px;
+}
+
+header nav ul li {
+    display: inline-block;
+    padding: 0 20px;
+    border-right: 1px solid #CCCCCC;
+}
+
+header nav ul li.selected {
+    opacity: 0.4;
+}
+
+header nav ul li:last-child {
+    border: none;
+}
+
+.btnsLoggedIn  {
+    display: none;
+}
+
+.btnsLoggedOut {
+    display: initial;
+}
+
+input.btn {
+    color: #FFFFFF;
+    text-decoration: none;
+    padding: 10px 20px;
+    border: solid 1px;
+    background-color: rgb(150, 92, 19);
+    font-size: 16px;
+    cursor: pointer;
+}
+
+ul.headerButton li {
+    display: inline-block;
+}
+
+ul.headerButton li:first-child {
+    margin-right: 10px;
+}
+
+header input.btn {
+    margin: 0px 0;
+}
+
+input.btn:hover {
+    opacity: 0.8;
+    filter: alpha(opacity=80);  
+}
+
+input#loginBtn, input#userInfo {
+    margin-right: 1.5%;
+}
+
+form.formRegister {
+    z-index: 999;
+    border: #000000;
+    background-color: #FFFFFF;
+    -webkit-box-shadow: 1px 1px 3px 0px rgba(0,0,0,0.4);
+       -moz-box-shadow: 1px 1px 3px 0px rgba(0,0,0,0.4);
+            box-shadow: 1px 1px 3px 0px rgba(0,0,0,0.4);
+    float: right;
+    right: 20px;
+    margin-left: 20px;
+    margin-top: 100px;
+    overflow: visible;
+    position: fixed;
+    padding: 40px;
+    border-radius: 3px;
+    border: 3px solid #808080;
+    box-sizing: border-box;
+    -webkit-box-shadow: 3px 3px 3px -1px rgba(0,0,0,0.3);
+    -moz-box-shadow: 3px 3px 3px -1px rgba(0,0,0,0.3);
+    box-shadow: 3px 3px 3px -1px rgba(0,0,0,0.3);
+    font-size: 1.6em;
+    display: none;
+    max-width: 600px;
+    /*transition: .25s;*/
+}
+
+#logoutError {
+    width: auto;
+}
+
+.errorMsg {
+    color: rgb(255, 0, 0);
+}
+
+
+#signupComplete p, .errorMsg {
+    font-size: 1.1em;
+    line-height: 1.5em;
+}
+
+#loginErrorMsg, #signupErrorMsg {
+    margin: 20px 0;
+    color: rgb(255, 0, 0);
+}
+
+.showElement {
+    display: initial;
+}
+
+form fieldset {
+    position: relative;
+}
+
+form fieldset .close {
+/*    border: 1px solid #000000;
+    width: 15px;
+    height: 15px;
+*/    position: absolute;
+    top: 0;
+    right: 0;
+    cursor: pointer;
+    width: 20px;
+    height: 20px;
+}
+
+form fieldset .close .closeForm {
+    display: block;
+    position: absolute;
+    background: #000;
+    top: 45%;
+    left: 0%;
+    width: 20px;
+    height: 2px;
+    transform: rotate(45deg);
+}
+
+form fieldset .close .closeForm:after {
+    display: block;
+    position: absolute;
+    background: #000;
+    width: 20px;
+    height: 2px;
+    transform: rotate(90deg);
+    content: "";
+}
+
+form fieldset .close:hover .closeForm, form fieldset .close:hover .closeForm:after {
+    background: #CCC;
+}
+
+form fieldset legend {
+  padding-bottom: 15px;
+  font-weight: 800;
+  font-size: 1.4em;
+}
+
+input {
+    border: solid 1px;
+    padding: 4px 20px;
+    font-size: 0.9em;
+}
+input:hover {
+    border: 1px solid #999;
+    color:#000;
+}
+input[type="button"]:active, input[type="reset"]:active {
+     border: 1px solid #fa89ad;
+     color:#98a077;
+     background-color: #000000;
+}
+/*
+      http://stackoverflow.com/questions/13204002/align-form-elements-in-css
+*/
+form {
+    margin: 0 auto;
+}
+
+label, input {
+    /* in order to define widths */
+    display: inline-block;
+}
+
+label {
+    width: 100%;
+    /* positions the label text beside the input */
+}
+
+label + input {
+    width: 50%;
+    /* large margin-right to force the next element to the new-line
+       and margin-left to create a gutter between the label and input */
+    margin: 2% 10% 0 0;;
+}
+
+  /* only the submit button is matched by this selector,
+     but to be sure you could use an id or class for that button */
+/*input + input {
+    float: right;
+}
+*/
+
+
+footer {
+    margin-top: 100px;
+    width: 100%;
+    height: 100px;
+    background-color: #45AF97;
+}
+
+footer p {
+    color: #FFFFFF;
+    text-align: center;
+    line-height: 100px;
+}
+
+img{
+    margin: 0;
+    padding: 0;
+    vertical-align: bottom;
+}
+
+.fade {  
+    -webkit-transition: 0.2s ease-in-out;  
+       -moz-transition: 0.2s ease-in-out;  
+         -o-transition: 0.2s ease-in-out;  
+            transition: 0.2s ease-in-out;  
+}  
+.fade:hover {  
+    opacity: 0.8;  
+    filter: alpha(opacity=80);  
+}
+
+
+/* ---------- New Post ---------- */
+
+#mainContent h3 {
+    text-align: center;
+    padding-bottom: 30px;
+}
+
+#mainContent h3 .underline {
+    border-bottom: 3px solid maroon;
+    padding-bottom: 10px;
+    display: inline;
+}
+
+#newPost #photoPost ul {
+    margin: 0 auto;
+    -webkit-justify-content: center;
+    -moz-justify-content: center;
+    -ms-justify-content: center;
+    justify-content: center;
+}
+
+#newPost #photoPost ul li:first-child {
+    margin-right: 15px;
+}
+
+#newPost ul li {
+    display: inline-block;
+}
+
+#newPost #photoPost {
+    float: left;
+    width: 30%;
+}
+
+#newPost #photoPost form {
+    display: -webkit-box;
+    display: -moz-box;
+    display: -ms-flexbox;
+    display: -webkit-flex;
+    display: flex;
+}
+
+#newPost #textPost {
+    /*float: left;*/
+    width: 60%;
+    margin: 0 auto;
+    /*border-right: 1px solid #CCC;*/
+    padding-right: 2%;
+    box-sizing: border-box;
+}
+
+#newPost {
+    padding: 0 5px 20px;
+    margin: 15px 0 30px;
+    display: none;
+    border-bottom: 1px solid #1A5A49;
+}
+
+#newPost textarea {
+    display: block;
+    width: 100%;
+}
+
+#textPost input.btn {
+    margin-top: 10px;
+}
+
+
+/* ----------  Back To Top ---------- */
+
+#back-to-top {
+    position: fixed;
+    bottom: 30px;
+    right: 40px;
+    z-index: 9999;
+    width: 32px;
+    height: 32px;
+    text-align: center;
+    line-height: 30px;
+    background: #f5f5f5;
+    color: #444;
+    cursor: pointer;
+    border: 0;
+    border-radius: 2px;
+    text-decoration: none;
+    transition: opacity 0.2s ease-out;
+    opacity: 0;
+}
+#back-to-top:hover {
+    background: #dddddd;
+}
+#back-to-top.show {
+    opacity: 1;
+}
+
+
+/* ---------- Clearfix Styles ---------- */
+
+.clearfix:before,
+.clearfix:after {
+    content: " ";
+    display: table;
+}
+
+.clearfix:after {
+    clear: both;
+}
+
+.clearfix {
+    *zoom: 1;
+}
+
+/* ---------- Masonry Styles ---------- */
+
+#mainContent {
+    width: 97%;
+    margin: 0 auto;
+    padding-top: 110px;
+    z-index: 1;
+}
+
+section#mainContent div {
+    margin-bottom: 10px;
+}
+
+section#mainContent div:last-child {
+    margin-bottom: 0;
+}
+
+.item {
+    display: block;
+    float: left;
+    width: 300px;
+    margin: 0px 5px 10px;
+    background-color: #137F63;
+    border: 5px solid #1A5A49;
+    box-sizing: border-box;
+    color: #FFFFFF;
+    -webkit-transition: left .3s ease-in-out, top .3s ease-in-out .3s;
+        -moz-transition: left .3s ease-in-out, top .3s ease-in-out .3s;
+            transition: left .3s ease-in-out, top .3s ease-in-out .3s;
+}
+
+.item p {
+    padding: 10px;
+}
+
+.featured {
+    width: 610px;
+}
+
+.item img {
+    width: 290px;
+    height: auto;
+}
+
+.featured img {
+    width: 610px;
+    height: auto;
+}
+
+.item p, .item img {
+    margin: 0;
+}
