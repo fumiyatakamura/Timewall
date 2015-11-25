@@ -6,10 +6,10 @@
     if (session_status() == PHP_SESSION_NONE) {
         session_start();
     }
-    $DBHost = "localhost";
-    $DBusername = "root";
-    $DBpassword = "root";
-    $DBname = "timewall";
+    $servername = "localhost";
+    $username = "root";
+    $password = "root";
+    $dbname = "timewall";
 
     $methodType = $_SERVER['REQUEST_METHOD'];
     $data = array("status" => "fail", "msg" => "$methodType");
@@ -42,7 +42,7 @@
                 $lastname = $_POST["lastname"];
 
                 try {
-                    $conn = new PDO('mysql:host=localhost;dbname=timewall','root','root');
+                    $conn = new PDO("mysql:host=$servername;dbname=$dbname", $username, $password);
                     $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
                     $sql = "insert into users (firstname,lastname,email,password) values (:firstname,:lastname,:email,:password);";

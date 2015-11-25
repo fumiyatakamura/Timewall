@@ -32,9 +32,7 @@
             $rows = $statement->fetchAll(PDO::FETCH_ASSOC);
 
             foreach ($rows as $row) {
-                echo "<div class='item'>";
-
-                echo "<p>" . $row['post'] . "</p></div>";
+                echo "<div class='item'><p>" . $row['post'] . "</p></div>";
             }
 
         }

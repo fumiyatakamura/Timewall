@@ -165,9 +165,7 @@
 
 
 
-        <div id="imageGallery" class="content clearfix js-masonry" data-masonry-options='{ "columnWidth": 310, "itemSelector": ".item" }'>
-
-
+        <div id="imageGallery" class="grid content clearfix">
         </div>
 
     </div>
@@ -180,15 +178,11 @@
 
 </body>
 
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
-
-
-
+<script src="js/jquery-1.10.2.min.js"></script>
+<script src="js/masonry.pkgd.min.js"></script>
+<script src="js/imagesloaded.pkgd.min.js"></script>
 
 <script type="text/javascript">
-
-
-
 $(function(){
 
     //form & button
@@ -273,9 +267,6 @@ $(function(){
 
 
                 } else {
-                    //console.log("");
-                    // $("#logoutForm").css("display", "none");
-                    // $("#loginForm").css("display", "block");
 
                 }
 
@@ -412,12 +403,10 @@ $(function(){
                     $("#signupForm").css("display","none");
 
                 }
-                populatePostGallery();
 
             },
             error: function(jqXHR, textStatus, errorThrown) {
-                //console.log(jqXHR.statusText, textStatus, errorThrown);
-                console.log(jqXHR.statusText, textStatus);
+                console.log(jqXHR.statusText, textStatus, errorThrown);
             }
         });
 
@@ -436,6 +425,17 @@ $(function(){
 
     });
 
+    //Masonry Layout
+
+    function initMasonry(){
+        var $container = $('.grid').masonry({
+          columnWidth: 310,
+          itemSelector: '.item',
+          isFitWidth: true,
+          transitionDuration: 0
+        });
+    };
+
     // show all posts
     $(".allTimeline").click(function(){
         window.location.reload();
@@ -445,7 +445,6 @@ $(function(){
     $(".customTimeline").click(function() {
         customGallery();
 
-
         function customGallery(){
             console.log(document.getElementById('userInfoEmailText').value);
             $.ajax({
@@ -453,7 +452,9 @@ $(function(){
                 type: "GET",
                 //dataType: ,
                 success: function(data) {
-                    $('#imageGallery').html(data);
+                    $(".grid").html(data);
+                    $('.grid').masonry('reloadItems');
+                    $('.grid').masonry('layout');
                 }
 
             });
@@ -468,10 +469,12 @@ $(function(){
             url: "getImageGallery.php",//image & textpost use same php file
             dataType: "html",
             success: function(data) {
-                $('#imageGallery').html(data);
+                $('.grid').html(data);
             }
         }).done(function() {
-            //
+            initMasonry();
+            $('.grid').masonry('reloadItems');
+            $('.grid').masonry('layout');
         });
     }
 
@@ -492,20 +495,20 @@ $(function(){
                     $("#errorMsg").html(data['msg']);
 
                 } else {
-                    //console.log(data['msg']);
-                    //var post = '<div class="item"><p>' + data['msg'] + '</p></div>';
                     populatePostGallery();
                     document.getElementById("textPostForm").reset();
-                    //console.log(post);
 
                 }
 
 
             },
             error: function(jqXHR, textStatus, errorThrown) {
-                //console.log(jqXHR.statusText, textStatus, errorThrown);
-                console.log(jqXHR.statusText, textStatus);
+                console.log(jqXHR.statusText, textStatus, errorThrown);
             }
+        }).always(function() {
+                console.log("in done section");
+                $('.grid').masonry('reloadItems');
+                $('.grid').masonry('layout');
         });
 
 
@@ -528,7 +531,4 @@ $(function(){
 });
 
 </script>
-<script src="js/masonry.pkgd.min.js"></script>
-
-
 </html>

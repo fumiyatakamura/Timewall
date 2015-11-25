@@ -8,10 +8,10 @@
     $methodType = $_SERVER['REQUEST_METHOD'];
     $data = array("status" => "fail", "msg" => "$methodType");
 
-    $DBHost = "localhost";
-    $DBusername = "root";
-    $DBpassword = "root";
-    $DBname = "timewall";
+    $servername = "localhost";
+    $username = "root";
+    $password = "root";
+    $dbname = "timewall";
 
 
     if ($methodType === 'GET') {
@@ -27,7 +27,7 @@
                 // if the above worked then we got the session back and the minimal
                 // data that we stored inside of the session
                 try {
-                    $conn = new PDO('mysql:host=localhost;dbname=timewall','root','root');
+                    $conn = new PDO("mysql:host=$servername;dbname=$dbname", $username, $password);
                     $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
                     // $sql = "SELECT firstname, lastname, email FROM users WHERE email = :email";
